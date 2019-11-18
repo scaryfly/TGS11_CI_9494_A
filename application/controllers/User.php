@@ -16,9 +16,20 @@ class User extends REST_Controller
 
 	public function index_get()
 	{
-		return $this->returnData($this->db->get('users')->result(), false);
+		$response = $this->UserModel->getAll();
+		return $this->returnData($response['msg'], $response['error']);
 	}
-
+	public function login_post()
+	{
+		$response = $this->UserModel->response_login();
+		return $this->returnData($response['msg'], $response['error']);
+	}
+	function logout_post()
+	{
+		
+		$response = $this->UserModel->response_logout();
+		return $this->returnData($response['msg'], $response['error']);
+	}
 	public function index_post($id = null)
 	{
 		$validation = $this->form_validation;

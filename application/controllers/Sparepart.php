@@ -17,7 +17,8 @@ class Sparepart extends REST_Controller
 
 	public function index_get()
 	{
-		return $this->returnData($this->db->get('spareparts')->result(), false);
+		$response = $this->SparepartModel->getAll();
+		return $this->returnData($response['msg'], $response['error']);
 	}
 
 	public function index_post($id = null)
